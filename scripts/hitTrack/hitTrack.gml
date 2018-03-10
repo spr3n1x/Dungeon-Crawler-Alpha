@@ -1,5 +1,6 @@
 ///hitTrack()
 if(!self.invulnerable){
+	//test
 	self.hp-=other.dmg;
 	other.hp-=self.dmg;
 	if(self.type != "projectile"){
