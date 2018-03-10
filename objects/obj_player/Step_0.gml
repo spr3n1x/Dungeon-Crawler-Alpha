@@ -1,5 +1,9 @@
 /// @desc Movement and Collision
 
+if(room_persistent){
+	room_set_persistent(room_game,false)
+}
+
 xAxis = keyboard_check(vk_right) - keyboard_check(vk_left); //Left and Right Movement
 yAxis = keyboard_check(vk_down) - keyboard_check(vk_up); //Up and Down Movement
 if(gamepad_is_connected(0)){
@@ -14,15 +18,17 @@ xAxis = lengthdir_x(_length,_direction); // updating xAxis to account for diagon
 
 yAxis = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
 
-if(gamepad_is_connected(0)){
+if(gamepad_is_connected(0) && (gamepad_axis_value(0,gp_axisrv)!=0||gamepad_axis_value(0,gp_axisrh)!=0)){
 	_direction = point_direction(0, 0, gamepad_axis_value(0,gp_axisrh), gamepad_axis_value(0,gp_axisrv));
+	image_angle = _direction;
+	direction = _direction;
+} else if (!gamepad_is_connected(0) && (keyboard_check(vk_right)||keyboard_check(vk_left)||keyboard_check(vk_down)||keyboard_check(vk_up))){
+	image_angle = _direction;
+	direction = _direction;
 }
-image_angle = _direction;
-direction = _direction;
-
 // game end condition
 if(hp<=0){
-	game_end();
+	room_goto(room_main_menu);
 }
 if(gamepad_button_check(0, gp_shoulderrb)||keyboard_check(vk_space))
 {

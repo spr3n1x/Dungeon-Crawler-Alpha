@@ -1,13 +1,14 @@
 /// @desc
+if(distance_to_object(obj_player)< 100){
+	var _direction = point_direction(x, y,obj_player.x, obj_player.y); //direction of movement
+	var _length = Speed; // distance moving
+	xAxis = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
+	yAxis = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
+	direction = _direction;
+	image_angle = _direction;
+}
 
-var _direction = point_direction(0, 0, xAxis, yAxis); //direction of movement
-
-var _length = Speed * (xAxis !=0 || yAxis != 0); // distance moving
-
-xAxis = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
-
-yAxis = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
-
+gun();
 
 // wall collision with walls
 if(place_meeting(x+xAxis, y, obj_wall))
@@ -34,7 +35,9 @@ if(place_meeting(x, y+yAxis, obj_wall))
 // adding xAxis to x for movement
 y+=yAxis;
 
-
+if(gunCooldown>0){
+	gunCooldown--;
+}
 //-----------------------------------------------------------------------------------------------------
 
 invulnerability();

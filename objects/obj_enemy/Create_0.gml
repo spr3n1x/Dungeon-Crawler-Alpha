@@ -4,8 +4,11 @@ dmg = 1; //Damage
 hp = 1; //HitPoints
 xAxis = 0; //Left and Right Movement
 yAxis = 0; //Up and Down Movement
-Speed = 4; //speed of movement
-
+Speed = 2; //speed of movement
+bulletType = "standard"
+friendly = false;
+gunCooldownRate = 20;
+gunCooldown = 0;
 invulnerable = false;
 invulnerabilityTime = 1;
 invulnerabilityTimer = 0;
