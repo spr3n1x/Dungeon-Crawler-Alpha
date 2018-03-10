@@ -1,7 +1,4 @@
-/// @desc Movement and Collision
-
-xAxis = keyboard_check(vk_right) - keyboard_check(vk_left); //Left and Right Movement
-yAxis = keyboard_check(vk_down) - keyboard_check(vk_up); //Up and Down Movement
+/// @desc
 
 var _direction = point_direction(0, 0, xAxis, yAxis); //direction of movement
 
@@ -11,10 +8,6 @@ xAxis = lengthdir_x(_length,_direction); // updating xAxis to account for diagon
 
 yAxis = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
 
-// game end condition
-if(hp<=0){
-	game_end();
-}
 
 // wall collision with walls
 if(place_meeting(x+xAxis, y, obj_wall))
@@ -45,6 +38,4 @@ y+=yAxis;
 //-----------------------------------------------------------------------------------------------------
 
 invulnerability();
-
-
 

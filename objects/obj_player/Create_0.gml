@@ -5,7 +5,13 @@ yAxis = 0; //Up and Down Movement
 Speed = 4; //speed of movement
 
 invulnerabilityTimer = 0;
-hitPoints = 5;
+hp = 5;
+dmg = 2;
 invulnerable = false;
 invulnerabilityTime = 3;
-
+removable = false;
+type = "player"
+keyboard_set_map(ord("A"), vk_left);
+keyboard_set_map(ord("W"), vk_up);
+keyboard_set_map(ord("S"), vk_down);
+keyboard_set_map(ord("D"), vk_right);
