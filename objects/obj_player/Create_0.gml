@@ -3,9 +3,9 @@
 xAxis = 0; //Left and Right Movement
 yAxis = 0; //Up and Down Movement
 Speed = 4; //speed of movement
-
-x = 5;
-y = 5;
+boost = 2;
+x = 50;
+y = 50;
 invulnerabilityTimer = 0;
 hp = 7;
 dmg = 2;
@@ -18,7 +18,7 @@ type = "player"
 
 friendly = true;
 
-bulletType = "standard"
+bulletType = "spread"
 
 if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.25);
 
