@@ -95,6 +95,22 @@
             }
         },
         {
+            "Key": "6944c947-b535-4c3b-98d6-c2b9d30920f5",
+            "Value": {
+                "id": "03efa698-3a6f-4816-a2e4-c7ed74f1388e",
+                "resourcePath": "scripts\\invulnerability\\invulnerability.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "6bcd65d3-743d-4162-8756-9daa31d2aaac",
+            "Value": {
+                "id": "c4903000-9abf-486d-a03d-dcbbebdc6928",
+                "resourcePath": "sprites\\spr_wall\\spr_wall.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "6c291b50-b6d4-491e-9dfd-7e0a680d3a94",
             "Value": {
                 "id": "0ecd9724-4d92-42f0-b8cd-13aec3f68e69",
@@ -132,6 +148,14 @@
                 "id": "b35c74ae-d176-44f8-ada3-673e61d8c8f0",
                 "resourcePath": "rooms\\room0\\room0.yy",
                 "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "aa7ed34d-a716-4554-a145-8df228603253",
+            "Value": {
+                "id": "a40cea32-581e-4e56-b1f1-aea8cefd183e",
+                "resourcePath": "objects\\obj_wall\\obj_wall.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -200,7 +224,7 @@
         }
     ],
     "script_order": [
-        
+        "6944c947-b535-4c3b-98d6-c2b9d30920f5"
     ],
     "tutorial": ""
 }
