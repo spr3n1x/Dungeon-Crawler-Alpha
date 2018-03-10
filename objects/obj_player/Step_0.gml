@@ -24,7 +24,10 @@ direction = _direction;
 if(hp<=0){
 	game_end();
 }
-
+if(gamepad_button_check(0, gp_shoulderrb)||keyboard_check(vk_space))
+{
+   gun();
+}
 // wall collision with walls
 if(place_meeting(x+xAxis, y, obj_wall))
 {
