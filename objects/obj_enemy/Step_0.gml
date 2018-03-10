@@ -44,5 +44,11 @@ if(gunCooldown>0){
 }
 //-----------------------------------------------------------------------------------------------------
 
-invulnerability();
+if(self.invulnerable){
+	if (self.invulnerabilityTimer < room_speed*self.invulnerabilityTime){
+		self.invulnerabilityTimer++;
+	} else{
+		self.invulnerable = false;
+	}
+}
 

@@ -64,7 +64,13 @@ if(gunCooldown>0){
 }
 //-----------------------------------------------------------------------------------------------------
 
-invulnerability();
+if(invulnerable){
+	if (invulnerabilityTimer < room_speed*invulnerabilityTime){
+		invulnerabilityTimer++;
+	} else{
+		invulnerable = false;
+	}
+}
 
 
 
