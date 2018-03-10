@@ -23,20 +23,39 @@ items();
 inventory = ds_grid_create(10, 2);
 ds_grid_clear(inventory, 0);
 
+equipment = ds_grid_create(6, 2);
+ds_grid_clear(equipment, 0);
+
 coins = 0;
 var slot = 0;
 
 while (slot < ds_grid_width(inventory))
  {
- var inst = instance_create_layer(x+8+(64*slot), y+8, "Instances", obj_slot);
+ var inst = instance_create_layer(x+8+(64*slot), y+8, "Instances", obj_invSlot);
  inst.var_slot = slot;
  slot ++;
  }
 
+var inst = instance_create_layer(room_width-16, room_height-16, "Instances", obj_equipmentSlot);
+inst.var_slot = 0;
+var inst = instance_create_layer(room_width-16, room_height-16-32, "Instances", obj_equipmentSlot);
+inst.var_slot = 1;
+var inst = instance_create_layer(room_width-16, room_height-16-32-32, "Instances", obj_equipmentSlot);
+inst.var_slot = 2;
+var inst = instance_create_layer(room_width-16-32, room_height-16, "Instances", obj_equipmentSlot);
+inst.var_slot = 3;
+var inst = instance_create_layer(room_width-16-32, room_height-16-32, "Instances", obj_equipmentSlot);
+inst.var_slot = 4;
+var inst = instance_create_layer(room_width-16-32, room_height-16-32-32, "Instances", obj_equipmentSlot);
+inst.var_slot = 5;
+
+
+
+
 addItemToInv(item.health_potion, 3);
 friendly = true;
 
-bulletType = "spread"
+bulletType = "standard"
 
 if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.25);
 
