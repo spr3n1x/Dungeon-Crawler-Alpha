@@ -14,7 +14,7 @@ dmg = 2;
 invulnerable = false;
 invulnerabilityTime = 3;
 removable = false;
-gunCooldownRate = 20;
+gunCooldownRate = 5;
 gunCooldown = 0;
 type = "player"
 
@@ -55,7 +55,7 @@ inst.var_slot = 5;
 addItemToInv(item.health_potion, 3);
 friendly = true;
 
-bulletType = "standard"
+bulletType = "spread"
 
 if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.25);
 

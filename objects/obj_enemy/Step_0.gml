@@ -6,13 +6,13 @@ if(distance_to_object(obj_player)< 100){
 	yAxis = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
 	direction = _direction;
 	image_angle = _direction;
+	gun();
 }else{
 	var _direction = 0; //direction of movement
 	var _length = 0;
 	xAxis = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
 	yAxis = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
 }
-gun();
 
 // wall collision with walls
 if(place_meeting(x+xAxis, y, obj_wall))

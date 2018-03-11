@@ -4,8 +4,8 @@ xAxis = 0;
 yAxis = 0;
 Speed = 8;
 
-hp = 5;
-dmg = 3;
+hp = 1;
+dmg = 1;
 
 friendly = true;
 

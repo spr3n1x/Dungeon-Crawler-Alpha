@@ -5,11 +5,11 @@ if(!self.invulnerable){
 		self.hp-=other.dmg;
 		other.hp-=self.dmg;
 		if(other.type != "projectile"){
-			self.invulnerable = true;
-			self.invulnerabilityTimer = 0;
+			other.invulnerable = true;
+			other.invulnerabilityTimer = 0;
 		}
-		other.invulnerable = true;
-		other.invulnerabilityTimer = 0;
+		self.invulnerable = true;
+		self.invulnerabilityTimer = 0;
 		show_debug_message(string(self.hp));
 		if(other.removable == true && other.hp <= 0){
 			with(other){
