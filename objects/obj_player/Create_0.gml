@@ -1,6 +1,6 @@
 /// @desc Initialization
 
-
+initialization();
 
 xAxis = 0; //Left and Right Movement
 yAxis = 0; //Up and Down Movement
@@ -17,8 +17,8 @@ removable = false;
 gunCooldownRate = 5;
 gunCooldown = 0;
 type = "player"
-
-items();
+friendly = true;
+bulletType = "spread"
 
 inventory = ds_grid_create(10, 2);
 ds_grid_clear(inventory, 0);
@@ -53,15 +53,4 @@ inst.var_slot = 5;
 
 
 addItemToInv(item.health_potion, 3);
-friendly = true;
 
-bulletType = "spread"
-
-if gamepad_is_connected(0) gamepad_set_axis_deadzone(0, 0.25);
-
-keyboard_set_map(ord("A"), vk_left);
-keyboard_set_map(ord("W"), vk_up);
-keyboard_set_map(ord("S"), vk_down);
-keyboard_set_map(ord("D"), vk_right);
-
-keyboard_set_map(gp_shoulderrb, vk_space);

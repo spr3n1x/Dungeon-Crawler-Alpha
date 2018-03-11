@@ -1,5 +1,5 @@
-/// @description addRangedWeapon(item_ID, name, description, heath_gain);
-/// @function scr_add_weapon
+/// @description addHealthItem(item_ID, name, description, heath_gain);
+/// @function addHealthItem
 /// @param item_ID
 /// @param name
 /// @param description

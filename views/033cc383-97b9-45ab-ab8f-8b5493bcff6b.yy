@@ -11,7 +11,8 @@
         "4f0d7ddc-be2a-4582-8d6b-1e0b977ba1a6",
         "1f6029b7-62c5-4b29-871d-4f3bb14f2086",
         "d0bfc6b6-48ae-48c5-b513-d57dd2ac35fb",
-        "e1805c12-cdfa-4e8c-8a27-e132ca7b8318"
+        "e1805c12-cdfa-4e8c-8a27-e132ca7b8318",
+        "2ce2fe7a-bf6f-4ce2-a4a4-3f1b5ce02b3f"
     ],
     "filterType": "GMSprite",
     "folderName": "game sprites",
