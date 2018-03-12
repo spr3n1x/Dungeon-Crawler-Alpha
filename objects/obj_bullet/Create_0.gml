@@ -2,12 +2,12 @@
 
 xAxis = 0;
 yAxis = 0;
-Speed = 8;
+Speed = 4;
 
 hp = 1;
 dmg = 1;
 
 friendly = true;
 
-removable = true;
+permanent = false;
 type = "projectile"

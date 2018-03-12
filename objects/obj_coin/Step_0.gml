@@ -6,8 +6,8 @@ if(timer >= lifespan*room_speed){
 
 timer++;
 
-if(distance_to_object(obj_player)< 35){
-	var _direction = point_direction(x, y,obj_player.x, obj_player.y); //direction of movement
+if(distance_to_object(obj_player1)< 35){
+	var _direction = point_direction(x, y,obj_player1.x, obj_player1.y); //direction of movement
 	var _length = Speed; // distance moving
 	xAxis = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
 	yAxis = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost

@@ -1,7 +1,7 @@
 /// @desc drops
 
-var rand = random_range(1,10)
-var randDrop = random(100)
+var rand = random_range(1,10);
+var randDrop = random(100);
 var i;
 
 for(i = 0; i < rand; i++){
@@ -10,7 +10,7 @@ for(i = 0; i < rand; i++){
 
 //adding drops
 if(randDrop > 50){
-	with(obj_player){
+	with(obj_player1){
 		addItemToInv(item.health_potion, 1);
 	}
 }

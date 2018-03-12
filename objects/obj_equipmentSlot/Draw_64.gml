@@ -1,6 +1,9 @@
 /// @desc
-var iid = obj_player.equipment[# var_slot, 0];
-var amount = obj_player.equipment[# var_slot, 1];
+
+var iid = obj_player1.equipment[# var_slot, 0];
+var amount = obj_player1.equipment[# var_slot, 1];
+
+
 var name = global.item_index[# iid, item_stat.name];
 var description = global.item_index[# iid, item_stat.description];
 
