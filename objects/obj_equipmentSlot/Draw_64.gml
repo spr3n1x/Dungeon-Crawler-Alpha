@@ -6,7 +6,7 @@ var amount = obj_player1.equipment[# var_slot, 1];
 
 var name = global.item_index[# iid, item_stat.name];
 var description = global.item_index[# iid, item_stat.description];
-
+draw_self();
 //Draw stuff
 if (iid != item.none)
 {

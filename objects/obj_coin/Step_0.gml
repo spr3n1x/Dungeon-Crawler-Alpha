@@ -9,36 +9,73 @@ timer++;
 if(distance_to_object(obj_player1)< 35){
 	var _direction = point_direction(x, y,obj_player1.x, obj_player1.y); //direction of movement
 	var _length = Speed; // distance moving
-	xAxis = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
-	yAxis = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
+	x_speed = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
+	y_speed = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
+
 }else{
 	var _direction = 0; //direction of movement
 	var _length = 0;
-	xAxis = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
-	yAxis = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
+	x_speed = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
+	y_speed = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
 }
 
-// wall collision with walls
-if(place_meeting(x+xAxis, y, obj_wall))
-{
-	// nudging the object up against the wall
-	while(!place_meeting(x+sign(xAxis), y, obj_wall))
-	{
-		x+= sign(xAxis);
-	}
-	xAxis = 0;
+x+=x_speed;
+y+=y_speed;
+
+
+var _speed = point_distance(0, 0, x_speed, y_speed);
+
+var _direction = point_direction(0, 0, x_speed, y_speed);
+
+if (_speed > max_speed) {
+	x_speed = lengthdir_x(max_speed, _direction);
+	y_speed = lengthdir_y(max_speed, _direction);
 }
-// adding xAxis to x for movement
-x+=xAxis;
-// wall collision with walls
-if(place_meeting(x, y+yAxis, obj_wall))
-{
-	// nudging the object up against the wall
-	while(!place_meeting(x, y+sign(yAxis), obj_wall))
-	{
-		y+= sign(yAxis);
-	}
-	yAxis = 0;
+
+if (distance_to_object(obj_player1)>= 35) {
+	x_speed = lerp(x_speed, 0, .1);
+	y_speed = lerp(y_speed, 0, .1);
 }
-// adding xAxis to x for movement
-y+=yAxis;
+
+if (x_speed == 0 && y_speed == 0) {
+	image_speed = 0;
+	image_index = 0;
+}
+
+// Right collisions
+if x_speed > 0 {
+	image_xscale = 1;
+	if (checkCollision(self, obj_level.grid)) {
+		x = bbox_right&~(CELL_WIDTH-1);
+		x -= bbox_right-x;
+		x_speed = 0;
+	}
+} else if x_speed < 0 {
+	// Left collisions
+	image_xscale = -1;	
+	if (checkCollision(self, obj_level.grid)) {
+		x = bbox_left&~(CELL_WIDTH-1);
+		x += CELL_WIDTH+x-bbox_left;
+		x_speed = 0;
+	}
+}
+
+// Move vertically
+y += y_speed;
+
+// Vertical collisions
+if y_speed > 0 {
+	// Bottom collisions
+	if (checkCollision(self, obj_level.grid)) {
+		y = bbox_bottom&~(CELL_HEIGHT-1);
+		y -= bbox_bottom-y;
+		y_speed = 0;
+	}
+} else if y_speed < 0 {
+	// Top collisions
+	if (checkCollision(self, obj_level.grid)) {
+		y = bbox_top&~(CELL_HEIGHT-1);
+		y += CELL_HEIGHT+y-bbox_top;
+		y_speed = 0;
+	}
+}
