@@ -1,6 +1,6 @@
 /// @desc
 if(distance_to_object(obj_player1)< 100){
-	var _direction = point_direction(x, y,obj_player1.x, obj_player1.y); //direction of movement
+	var _direction = point_direction(x, y,obj_player1.x, obj_player1.y-10); //direction of movement
 	var _length = Speed; // distance moving
 	x_speed = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
 	y_speed = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
@@ -35,7 +35,7 @@ if (x_speed == 0 && y_speed == 0) {
 	image_speed = 0;
 	image_index = 0;
 }
-
+x+= x_speed;
 // Right collisions
 if x_speed > 0 {
 	image_xscale = 1;

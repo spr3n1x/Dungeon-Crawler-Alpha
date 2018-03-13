@@ -36,16 +36,9 @@ if (_x_input == 0 && _y_input == 0) {
 	image_speed = 1;
 }
 
-if (x_speed > 0) {
-		
-} else if (x_speed < 0) {
-	
-}
 if(keyboard_check(vk_space)){
 	gun(_direction);
 }
-
-// Move horizontally
 x += x_speed;
 
 // Right collisions
@@ -67,8 +60,8 @@ if x_speed > 0 {
 }
 
 // Move vertically
-y += y_speed;
 
+y += y_speed;
 // Vertical collisions
 if y_speed > 0 {
 	// Bottom collisions
@@ -85,16 +78,30 @@ if y_speed > 0 {
 		y_speed = 0;
 	}
 }
+
 if (self.gunCooldown > 0){
 	self.gunCooldown--;
 }
 //-----------------------------------------------------------------------------------------------------
 
 if(invulnerable){
+	if(pulseDirection){
+		image_alpha -= 0.075
+		if(image_alpha <= 0.3){
+			pulseDirection = false;
+		}
+	}else if(!pulseDirection){
+		image_alpha += 0.075
+		if(image_alpha >= 1){
+			pulseDirection = true;
+		}
+	}
 	if (invulnerabilityTimer < room_speed*invulnerabilityTime){
 		invulnerabilityTimer++;
 	} else{
+		image_alpha = 1;
 		invulnerable = false;
+		show_debug_message("Can Be Hit Now!");
 	}
 }
 

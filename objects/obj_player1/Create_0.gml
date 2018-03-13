@@ -25,7 +25,8 @@ dmg = 2;
 invulnerabilityTimer = 0;
 invulnerable = false;
 invulnerabilityTime = 3;
-
+pulseDirection = true;
+fadeAlpha = 0;
 //type of object
 type = "player";
 

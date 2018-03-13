@@ -6,11 +6,11 @@ hp = 1; //HitPoints
 
 x_speed = 0; //Left and Right Movement
 y_speed = 0; //Up and Down Movement
-Speed = 2; //speed of movement
-max_speed = 2
+Speed = 1; //speed of movement
+max_speed = 1;
 bulletType = "standard";
 friendly = false;
-gunCooldownRate = 20;
+gunCooldownRate = 50;
 gunCooldown = 0;
 invulnerable = false;
 invulnerabilityTime = 1;

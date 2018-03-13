@@ -19,7 +19,7 @@ var controller_direction = irandom(3);
 var steps = 400;
 
 var player_start_x = controller_x * CELL_WIDTH + CELL_WIDTH/2;
-var player_start_y = controller_y * CELL_HEIGHT + CELL_HEIGHT/2;
+var player_start_y = controller_y * CELL_HEIGHT + CELL_HEIGHT/2+4;
 instance_create_layer(player_start_x, player_start_y, "Instances", obj_player1);
 
 // Choose the direction change odds

@@ -6,7 +6,8 @@
     "children": [
         "1f9213f3-e8a4-4c40-8338-32921100bbec",
         "7a7f97cb-96ed-4103-824f-c171e9a6f0af",
-        "28365999-db7c-4934-afb7-8bee628878c6"
+        "28365999-db7c-4934-afb7-8bee628878c6",
+        "7d4d047f-c031-4bd2-996f-d64ed46e2fc6"
     ],
     "filterType": "GMSprite",
     "folderName": "Menu Sprites",
