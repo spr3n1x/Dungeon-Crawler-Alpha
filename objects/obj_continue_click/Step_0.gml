@@ -2,6 +2,6 @@
 
 timer++;
 
-if(timer == 60){
+if(timer == 20){
 	room_goto(room_game);
 }

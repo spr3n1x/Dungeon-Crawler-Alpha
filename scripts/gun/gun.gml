@@ -2,7 +2,7 @@
 /// @function gun()
 /// @param bulletDirection
 
-if(self.gunCooldown == 0 && self.type == "player"){
+if(self.gunCooldown == self.gunCooldownRate*room_speed && self.type == "player"){
 	var _direction = argument0;
 	if(self.bulletType == "standard"){
 		
