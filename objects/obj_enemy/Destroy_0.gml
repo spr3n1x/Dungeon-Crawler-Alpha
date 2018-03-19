@@ -1,5 +1,4 @@
 /// @desc drops
-//test
 var rand = random_range(1,10);
 var randDrop = random(100);
 var i;
