@@ -1,25 +1,32 @@
 /// @desc
-if(idleCheck == 0){
-		state = enemyStates.idle;
-}if(idleCheck == room_speed * 5){
-	state = enemyStates.wander;
-}else if (distance_to_object(obj_player1) < aggroRange || hp < hp * 0.2) {
-	state = enemyStates.escape;
-}else if (distance_to_object(obj_player1) > escapeRange || hp < hp * 0.2) {
-	state = enemyStates.heal;
-}else if (distance_to_object(obj_player1) > aggroRange || state == enemyStates.alert) {
-	state = enemyStates.search;
-}else if (distance_to_object(obj_player1) < atkRange) {
-	state = enemyStates.attack;
-}else if (distance_to_object(obj_player1) < shootRange) {
-	state = enemyStates.shoot;	
-}else if (distance_to_object(obj_player1) < aggroRange) {
-	state = enemyStates.alert;
-}
-
-if(state != enemyStates.idle && state != enemyStates.wander){
-	idleCheck = 0;
-}
+//if(idleCheck == 0){
+//		state = enemyStates.idle;
+//		show_debug_message("attack state");
+//}if(idleCheck == room_speed * 5){
+//	state = enemyStates.wander;
+//	show_debug_message("wander state");
+//}else if (distance_to_object(obj_player1) < aggroRange || hp < maxhp * 0.2) {
+//	state = enemyStates.escape;
+//	show_debug_message("escape state");
+//}else if (distance_to_object(obj_player1) > escapeRange || state == enemyStates.escape) {
+//	state = enemyStates.heal;
+//	show_debug_message("heal state");
+//}else if (distance_to_object(obj_player1) > aggroRange || state == enemyStates.alert) {
+//	state = enemyStates.search;
+//	show_debug_message("search state");
+//}else if (distance_to_object(obj_player1) < atkRange) {
+//	state = enemyStates.attack;
+//	show_debug_message("attack state");
+//}else if (distance_to_object(obj_player1) < shootRange) {
+//	state = enemyStates.shoot;	
+//	show_debug_message("shoot state");
+//}else if (distance_to_object(obj_player1) < aggroRange) {
+//	state = enemyStates.alert;
+//	show_debug_message("alert state");
+//}
+//if(state != enemyStates.idle && state != enemyStates.wander){
+//	idleCheck = 0;
+//}
 
 switch(state){
 	case enemyStates.idle:
@@ -29,12 +36,52 @@ switch(state){
 		x_speed = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
 		y_speed = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
 		image_speed = 0;
-		image_index = 0;
+		//image_index = 0;
 		idleCheck += 1;
+		
+		if(idleCheck == idle_time){
+			state = enemyStates.wander;
+			wanderTimer = 0;
+			show_debug_message("wander state");
+			break;
+		}
+		if(distance_to_object(obj_player1) < aggroRange){
+			state = enemyStates.alert;
+			show_debug_message("alert state");
+		}
+		
+		
+		
 		break;
 	#endregion
 	case enemyStates.wander:
 		#region wander
+		if(wanderTimer == 0){
+			wanderDir = irandom(3)*90;
+			wanderTimer = wanderTime;
+		}
+		var _direction = wanderDir; //direction of movement
+		var _length = Speed;
+		x_speed = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
+		y_speed = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
+		image_speed = 0;
+		//image_index = 0;
+		idleCheck -= 1;
+		
+		if(idleCheck == 0){
+			state = enemyStates.idle;
+			show_debug_message("idle state");
+			wanderTimer = 0;
+			break;
+		}
+		if(distance_to_object(obj_player1) < aggroRange){
+			state = enemyStates.alert;
+			show_debug_message("alert state");
+			wanderTimer = 0;
+			idleCheck = 0;
+			break;
+		}
+		wanderTimer--;
 		break;
 		#endregion
 	case enemyStates.alert:
@@ -44,20 +91,51 @@ switch(state){
 			x_speed = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
 			y_speed = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
 			direction = _direction;
+			
+			if(distance_to_object(obj_player1) > aggroRange){
+				state = enemyStates.search;
+				show_debug_message("search state");
+			}
+			
+			break;
+		#endregion
+	case enemyStates.search:
+		#region search
+			if(irandom(100) > 35){
+				var _direction = point_direction(x, y,obj_player1.x, obj_player1.y-10); //direction of movement
+			}else{
+				var _direction = irandom(3)*90;
+			}
+			var _length = Speed; // distance moving
+			x_speed = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
+			y_speed = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
+			direction = _direction;
+			searchTimer++;
+			if(distance_to_object(obj_player1) < aggroRange){
+				state = enemyStates.alert;
+				searchTime = 0;
+				show_debug_message("alert state");
+				break;
+			}
+			if(searchTime == searchTimer){
+				state = enemyStates.idle;
+			}
+			break;
+		#endregion
+	case enemyStates.attack:
+		#region attack
+		show_debug_message("in attack range");
+			var _direction = point_direction(x, y,obj_player1.x, obj_player1.y-10); //direction of movement
+			var _length = 0; // distance moving
+			x_speed = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
+			y_speed = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
+			direction = _direction;
 			var _speed = point_distance(0, 0, x_speed, y_speed);
 			var _direction = point_direction(0, 0, x_speed, y_speed);
 			if (_speed > max_speed) {
 				x_speed = lengthdir_x(max_speed, _direction);
 				y_speed = lengthdir_y(max_speed, _direction);
 			}
-			break;
-		#endregion
-	case enemyStates.search:
-		#region search
-			break;
-		#endregion
-	case enemyStates.attack:
-		#region attack
 			break;
 		#endregion
 	case enemyStates.shoot:
@@ -152,42 +230,42 @@ if(self.invulnerable){
 
 
 
-if(distance_to_object(obj_player1)< 100){
-	var _direction = point_direction(x, y,obj_player1.x, obj_player1.y-10); //direction of movement
-	var _length = Speed; // distance moving
-	x_speed = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
-	y_speed = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
-	direction = _direction;
-	gun(_direction);
-}else{
-	var _direction = 0; //direction of movement
-	var _length = 0;
-	x_speed = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
-	y_speed = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
-}
+//if(distance_to_object(obj_player1)< 100){
+//	var _direction = point_direction(x, y,obj_player1.x, obj_player1.y-10); //direction of movement
+//	var _length = Speed; // distance moving
+//	x_speed = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
+//	y_speed = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
+//	direction = _direction;
+//	gun(_direction);
+//}else{
+//	var _direction = 0; //direction of movement
+//	var _length = 0;
+//	x_speed = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
+//	y_speed = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
+//}
 
-x+=x_speed;
-y+=y_speed;
+//x+=x_speed;
+//y+=y_speed;
 
 
-var _speed = point_distance(0, 0, x_speed, y_speed);
+//var _speed = point_distance(0, 0, x_speed, y_speed);
 
-var _direction = point_direction(0, 0, x_speed, y_speed);
+//var _direction = point_direction(0, 0, x_speed, y_speed);
 
-if (_speed > max_speed) {
-	x_speed = lengthdir_x(max_speed, _direction);
-	y_speed = lengthdir_y(max_speed, _direction);
-}
+//if (_speed > max_speed) {
+//	x_speed = lengthdir_x(max_speed, _direction);
+//	y_speed = lengthdir_y(max_speed, _direction);
+//}
 
-if (distance_to_object(obj_player1)>= 100) {
-	x_speed = lerp(x_speed, 0, .1);
-	y_speed = lerp(y_speed, 0, .1);
-}
+//if (distance_to_object(obj_player1)>= 100) {
+//	x_speed = lerp(x_speed, 0, .1);
+//	y_speed = lerp(y_speed, 0, .1);
+//}
 
-if (x_speed == 0 && y_speed == 0) {
-	image_speed = 0;
-	image_index = 0;
-}
+//if (x_speed == 0 && y_speed == 0) {
+//	image_speed = 0;
+//	image_index = 0;
+//}
 
 
 //-----------------------------------------------------------------------------------------------------

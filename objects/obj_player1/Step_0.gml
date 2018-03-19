@@ -1,5 +1,7 @@
 /// @desc Movement and Collision
-
+if (self.gunCooldown > 0){
+	self.gunCooldown--;
+}
 if(room_persistent){
 	room_set_persistent(room_game,false)
 }

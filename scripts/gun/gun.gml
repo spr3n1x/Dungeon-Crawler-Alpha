@@ -2,7 +2,7 @@
 /// @function gun()
 /// @param bulletDirection
 
-if(self.gunCooldown == self.gunCooldownRate*room_speed && self.type == "player"){
+if(self.gunCooldown == 0 && self.type == "player"){
 	var _direction = argument0;
 	if(self.bulletType == "standard"){
 		
@@ -44,7 +44,7 @@ if(self.gunCooldown == self.gunCooldownRate*room_speed && self.type == "player")
 	}
 	self.gunCooldown = self.gunCooldownRate;
 
-}else if(self.gunCooldown == 0) {
+}else if(self.gunCooldown == 0 && self.type == "hostile") {
 	var _direction = argument0;
 	if(self.bulletType == "standard"){
 		with(instance_create_depth(self.x,self.y,0,obj_bullet)) {
