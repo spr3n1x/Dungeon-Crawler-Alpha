@@ -10,16 +10,16 @@ Speed = 1; //speed of movement
 aggroRange = 50;
 escapeRange = aggroRange * 2;
 
-atkRange = 25;
+atkRange = 15;
 atkSpeed = 1;
 atkCooldown = 0;
 
 state = enemyStates.idle;
 show_debug_message("idle state")
 
-shootRange = 35;
-gunCooldownRate = 1;
-gunCooldown = 0;
+shootRange = 45;
+gunCooldownRate = room_speed;
+gunCooldown = gunCooldownRate;
 
 bulletType = "standard";
 friendly = false;

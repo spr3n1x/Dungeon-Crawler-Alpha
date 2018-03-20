@@ -12,3 +12,6 @@ enum enemyStates {
 	escape,
 	heal
 }
+
+
+

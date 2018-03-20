@@ -136,7 +136,10 @@ switch(state){
 			x_speed = lengthdir_x(_length,_direction); // updating xAxis to account for diagonal speed boost
 			y_speed = lengthdir_y(_length,_direction); // updating yAxis to account for diagonal speed boost
 			direction = _direction;
-			
+			if(gunCooldown == 0){
+				gun(_direction);
+				gunCooldown = gunCooldownRate;
+			}
 			if(distance_to_object(obj_player1) > shootRange){
 				state = enemyStates.alert;
 				show_debug_message("alert state");
@@ -229,8 +232,8 @@ if y_speed > 0 {
 }
 
 
-if (self.gunCooldown < room_speed * gunCooldownRate){
-	self.gunCooldown++;
+if (self.gunCooldown > 0){
+	self.gunCooldown--;
 }
 
 if(self.invulnerable){
