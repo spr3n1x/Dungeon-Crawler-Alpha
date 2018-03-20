@@ -3,6 +3,9 @@ if(!self.invulnerable){
 	if(self.friendly!=other.friendly){
 		self.hp-=other.dmg;
 		other.hp-=self.dmg;
+		if(other.type == "hostile"){
+			return true;
+		}
 		if(other.type == "player"){
 			other.invulnerable = true;
 			other.invulnerabilityTimer = 0;

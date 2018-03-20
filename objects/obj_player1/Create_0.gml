@@ -18,7 +18,7 @@ boost = 1;
 //Stats
 hp = 7;
 max_hp = 7;
-dmg = 2;
+dmg = 1;
 
 
 //Invunerability Variables
