@@ -39,7 +39,8 @@ if (_x_input == 0 && _y_input == 0) {
 }
 
 if(keyboard_check(vk_space)){
-	gun(_direction);
+	//gun(_direction);
+	
 }
 x += x_speed;
 
@@ -98,7 +99,7 @@ if(invulnerable){
 			pulseDirection = true;
 		}
 	}
-	if (invulnerabilityTimer < room_speed*invulnerabilityTime){
+	if (invulnerabilityTimer < invulnerabilityTime){
 		invulnerabilityTimer++;
 	} else{
 		image_alpha = 1;

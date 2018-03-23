@@ -24,7 +24,7 @@ dmg = 1;
 //Invunerability Variables
 invulnerabilityTimer = 0;
 invulnerable = false;
-invulnerabilityTime = 3;
+invulnerabilityTime = 3*room_speed;
 pulseDirection = true;
 fadeAlpha = 0;
 //type of object
@@ -39,6 +39,8 @@ friendly = true;
 //
 permanent = true;
 
+
+hurtbox = scr_hurtbox_create(9,13,-5,-12);
 
 
 inventory = ds_grid_create(10, 2);
